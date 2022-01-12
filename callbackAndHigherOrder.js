@@ -14,7 +14,6 @@ multiply = (num1, num2, callback) => callback(num1 * num2);
 multiply(4, 3, (answer) => {
   console.log("The answer is " + answer); //should console.log 12
 });
-
 ////////// PROBLEMS 2 - 6 //////////
 
 // The names array will be used in problems 2 - 6.
@@ -171,14 +170,25 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE
+const getUserById = (users, id, cb) => {
+  let foundUser = users.filter((userObj) => userObj.id === id);
+  return cb(foundUser[0]);
+};
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address)
-// })
+getUserById(users, "16t", (user) => {
+  console.log(
+    "The user with the id 16t has the email of " +
+      user.email +
+      " the name of " +
+      user.name +
+      " and the address of " +
+      user.address
+  );
+});
 
 ////////// CHALLENGE //////////
 
@@ -197,7 +207,7 @@ var users = [
 */
 
 // CODE HERE
-
+const addingFactory = (x) => (y) => x + y;
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -211,7 +221,7 @@ var users = [
 */
 
 // CODE HERE
-
+const addTen = addingFactory(10);
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -223,7 +233,8 @@ var users = [
 */
 
 // CODE HERE
-
+console.log(addTen(15));
+console.log(addTen(100));
 /*
   Let's make another function from the addingFactory. 
 
@@ -236,3 +247,5 @@ var users = [
 */
 
 // CODE HERE
+const addTwentyThree = addingFactory(23);
+console.log(addTwentyThree(7));
