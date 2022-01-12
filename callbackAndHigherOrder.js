@@ -48,14 +48,14 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
-
+last = (arr, callback) => callback(arr[arr.length - 1]);
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// last(names, lastName => {
-//   console.log('The last name in names is ' + lastName)
-// })
+last(names, (lastName) => {
+  console.log("The last name in names is " + lastName);
+});
 
 ////////// PROBLEM 4 //////////
 
@@ -67,18 +67,22 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
-
+function contains(arr, name, callback) {
+  if (arr.includes(name) === true) {
+    callback(true);
+  } else callback(false);
+}
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
+contains(names, "Colt", (result) => {
+  if (result === true) {
+    console.log("Colt is in the array");
+  } else {
+    console.log("Colt is not in the array");
+  }
+});
 
 ////////// PROBLEM 5 //////////
 
@@ -89,6 +93,17 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
+const uniq = (arr, callback) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] === arr[i]) {
+        arr.splice(j, 1);
+        j--;
+      }
+    }
+  }
+  callback(arr);
+};
 
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
@@ -98,7 +113,11 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
-
+uniq(names, (uniqArr) =>
+  console.log(
+    `The new names array with all the duplicate items removed is ${uniqArr}`
+  )
+);
 ////////// PROBLEM 6 //////////
 
 /* 
@@ -107,8 +126,10 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
-
-/*
+const each = (names, callback) => {
+  names.forEach((el, i) => callback(el, i));
+};
+/* 
   Invoke the each function, passing in the names array and a callback function.
   The callback function should take in two paremeters, item and index.
   The callback should print a string that says:
@@ -116,7 +137,9 @@ first(names, (firstName) => {
 */
 
 // CODE HERE
-
+each(names, (item, index) =>
+  console.log(`The item at index ${index} is ${item}`)
+);
 ////////// PROBLEM 7 //////////
 
 /*
